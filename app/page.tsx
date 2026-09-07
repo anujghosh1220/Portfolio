@@ -11,10 +11,12 @@ import Certifications from '@/components/Certifications';
 import GitHubSection from '@/components/GitHubSection';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import { ScrollProgress, BackToTop } from '@/components/animations';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100">
+      <ScrollProgress />
       <BackgroundEffects />
       <Navbar />
       <main>
@@ -30,6 +32,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }

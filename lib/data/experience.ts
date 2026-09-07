@@ -6,6 +6,7 @@ export interface Experience {
   period: string;
   responsibilities: string[];
   technologies?: string[];
+  current?: boolean;
 }
 
 export const experiences: Experience[] = [
@@ -14,6 +15,7 @@ export const experiences: Experience[] = [
     title: "Software Development Engineer I",
     company: "Vayunex Technologies",
     period: "2026 – Present",
+    current: true,
     responsibilities: [
       "Feature development",
       "Writing clean, maintainable and efficient code",

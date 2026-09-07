@@ -54,11 +54,11 @@ export default function Navbar() {
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-gray-900/80 backdrop-blur-lg border-b border-gray-800' : 'bg-transparent'
+        scrolled ? 'bg-gray-900/80 backdrop-blur-lg border-b border-gray-800 shadow-lg' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -72,21 +72,29 @@ export default function Navbar() {
           </motion.a>
 
           <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeSection === item.href.substring(1)
-                    ? 'text-white bg-gray-800'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item.name}
-              </motion.button>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <motion.button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className="relative px-3 py-2 text-sm font-medium"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className={isActive ? 'text-white' : 'text-gray-300 hover:text-white'}>
+                    {item.name}
+                  </span>
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-violet-500"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: isActive ? 1 : 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </motion.button>
+              );
+            })}
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
@@ -94,29 +102,47 @@ export default function Navbar() {
               href="https://github.com/anujghosh1220"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-              whileHover={{ scale: 1.1 }}
+              className="text-gray-400 hover:text-white transition-colors relative"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               aria-label="GitHub"
             >
 <FaGithub size={20} />
+              <motion.div
+                className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-violet-500"
+                whileHover={{ width: '100%', left: 0 }}
+                transition={{ duration: 0.2 }}
+              />
             </motion.a>
             <motion.a
               href="https://www.linkedin.com/in/anuj-ghosh-416964239"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-              whileHover={{ scale: 1.1 }}
+              className="text-gray-400 hover:text-white transition-colors relative"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               aria-label="LinkedIn"
             >
 <FaLinkedin size={20} />
+              <motion.div
+                className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-violet-500"
+                whileHover={{ width: '100%', left: 0 }}
+                transition={{ duration: 0.2 }}
+              />
             </motion.a>
             <motion.a
               href="mailto:anujghosh588@gmail.com"
-              className="text-gray-400 hover:text-white transition-colors"
-              whileHover={{ scale: 1.1 }}
+              className="text-gray-400 hover:text-white transition-colors relative"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               aria-label="Email"
             >
               <FaEnvelope size={20} />
+              <motion.div
+                className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-violet-500"
+                whileHover={{ width: '100%', left: 0 }}
+                transition={{ duration: 0.2 }}
+              />
             </motion.a>
           </div>
 

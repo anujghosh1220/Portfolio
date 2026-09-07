@@ -5,28 +5,28 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import Card from './Card';
 import SectionHeading from './SectionHeading';
 import Button from './Button';
+import { FadeIn } from './animations';
 
 export default function GitHubSection() {
   return (
-    <section id="github" className="py-20 relative">
+    <section id="github" className="py-20 relative scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Open Source & Code"
           subtitle="Explore my repositories and contributions on GitHub."
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
+        <FadeIn direction="up" delay={0.2}>
           <Card className="p-8 text-center">
-            <div className="flex justify-center mb-6">
+            <motion.div
+              className="flex justify-center mb-6"
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              transition={{ duration: 0.3 }}
+            >
               <div className="p-4 bg-gray-800/50 rounded-full">
                 <FaGithub className="text-white" size={48} />
               </div>
-            </div>
+            </motion.div>
             <h3 className="text-2xl font-bold text-white mb-4">
               Check Out My GitHub
             </h3>
@@ -35,17 +35,28 @@ export default function GitHubSection() {
               My GitHub profile contains the complete source code for the projects 
               featured on this portfolio and more.
             </p>
-            <Button
-              href="https://github.com/anujghosh1220"
-              size="lg"
-              external
+            <motion.div
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.2 }}
             >
+              <Button
+                href="https://github.com/anujghosh1220"
+                size="lg"
+                external
+              >
 <FaGithub className="mr-2" size={20} />
-              Visit GitHub Profile
-              <FaExternalLinkAlt className="ml-2" size={20} />
-            </Button>
+                Visit GitHub Profile
+                <motion.span
+                  className="ml-2 inline-block"
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <FaExternalLinkAlt size={20} />
+                </motion.span>
+              </Button>
+            </motion.div>
           </Card>
-        </motion.div>
+        </FadeIn>
       </div>
     </section>
   );
