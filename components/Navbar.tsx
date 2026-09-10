@@ -54,7 +54,7 @@ export default function Navbar() {
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-gray-900/80 backdrop-blur-lg border-b border-gray-800 shadow-lg' : 'bg-transparent'
+        scrolled ? 'bg-slate-950/70 backdrop-blur-xl border-b border-white/10 shadow-[0_12px_32px_rgba(15,23,42,0.35)]' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -64,8 +64,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <motion.a
             href="#home"
-            className="text-xl font-bold text-white"
-            whileHover={{ scale: 1.05 }}
+            className="text-xl font-black text-white tracking-[0.08em] drop-shadow-[0_0_18px_rgba(59,130,246,0.25)]"
+            whileHover={{ scale: 1.05, rotate: -2 }}
             onClick={() => scrollToSection('#home')}
           >
             AG
@@ -78,15 +78,15 @@ export default function Navbar() {
                 <motion.button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="relative px-3 py-2 text-sm font-medium"
-                  whileHover={{ scale: 1.05 }}
+                  className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    isActive ? 'text-white bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]' : 'text-gray-300 hover:text-white'
+                  }`}
+                  whileHover={{ scale: 1.04, y: -1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className={isActive ? 'text-white' : 'text-gray-300 hover:text-white'}>
-                    {item.name}
-                  </span>
+                  <span>{item.name}</span>
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-violet-500"
+                    className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: isActive ? 1 : 0 }}
                     whileHover={{ scaleX: 1 }}

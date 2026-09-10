@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FaMapMarker, FaBriefcase, FaCode } from 'react-icons/fa';
 import Card from './Card';
@@ -19,24 +20,42 @@ export default function About() {
           subtitle="Software Development Engineer and Full-Stack Developer with hands-on experience building web applications across frontend, backend, and database layers."
         />
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <StaggerContainer staggerDelay={0.15} className="space-y-6">
-            <StaggerItem direction="up">
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Software Development Engineer and Full-Stack Developer with hands-on experience building web applications across frontend, backend, and database layers. My development experience spans Python, Flask, React.js, Node.js, PHP, SQL, MongoDB and modern web technologies.
-              </p>
-            </StaggerItem>
-            <StaggerItem direction="up">
-              <p className="text-gray-300 text-lg leading-relaxed">
-                I've built business-oriented applications, real-time systems and management platforms, while also developing a strong foundation in cybersecurity and secure software development.
-              </p>
-            </StaggerItem>
-            <StaggerItem direction="up">
-              <p className="text-gray-400 text-base leading-relaxed">
-                I approach every project with a focus on clean code, security best practices, and scalable architecture. Whether it's building a complete management system or implementing secure authentication flows, I'm committed to delivering robust, user-focused solutions.
-              </p>
-            </StaggerItem>
-          </StaggerContainer>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
+          <div className="space-y-6">
+            <FadeIn direction="left" delay={0.1}>
+              <Card className="p-3 border border-blue-500/20 bg-slate-950/60 shadow-[0_0_0_1px_rgba(96,165,250,0.15),0_0_35px_rgba(96,165,250,0.1)]" hover={false} glow>
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#070b12] via-[#101827] to-[#1f2c3d]">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(96,165,250,0.16),_transparent_45%)]" />
+                  <Image
+                    src="/images/profile-transparent.webp"
+                    alt="Professional portrait of the portfolio owner"
+                    width={800}
+                    height={1200}
+                    priority
+                    className="relative z-10 mx-auto h-[440px] w-auto object-contain sm:h-[520px] lg:h-[560px]"
+                  />
+                </div>
+              </Card>
+            </FadeIn>
+
+            <StaggerContainer staggerDelay={0.15} className="space-y-6">
+              <StaggerItem direction="up">
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  Software Development Engineer and Full-Stack Developer with hands-on experience building web applications across frontend, backend, and database layers. My development experience spans Python, Flask, React.js, Node.js, PHP, SQL, MongoDB and modern web technologies.
+                </p>
+              </StaggerItem>
+              <StaggerItem direction="up">
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  I've built business-oriented applications, real-time systems and management platforms, while also developing a strong foundation in cybersecurity and secure software development.
+                </p>
+              </StaggerItem>
+              <StaggerItem direction="up">
+                <p className="text-gray-400 text-base leading-relaxed">
+                  I approach every project with a focus on clean code, security best practices, and scalable architecture. Whether it's building a complete management system or implementing secure authentication flows, I'm committed to delivering robust, user-focused solutions.
+                </p>
+              </StaggerItem>
+            </StaggerContainer>
+          </div>
 
           <FadeIn direction="right" delay={0.2}>
             <Card className="p-6" glow>

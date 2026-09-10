@@ -24,12 +24,12 @@ export default function Button({
   external = false,
   disabled = false
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'relative inline-flex items-center justify-center font-semibold tracking-[0.01em] transition-all duration-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden isolate border';
   
   const variants = {
-    primary: 'bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 focus:ring-blue-500',
-    secondary: 'bg-gray-800/50 hover:bg-gray-700/50 text-white border border-gray-700 hover:border-gray-600 backdrop-blur-sm focus:ring-gray-500',
-    ghost: 'text-gray-300 hover:text-white hover:bg-gray-800/30 focus:ring-gray-500'
+    primary: 'border-transparent bg-gradient-to-r from-blue-600 via-indigo-500 to-violet-600 text-white shadow-[0_16px_35px_rgba(59,130,246,0.35)] hover:shadow-[0_22px_42px_rgba(99,102,241,0.42)] focus:ring-blue-500 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.35),transparent_35%)] before:opacity-90 before:transition-opacity before:duration-300 hover:before:opacity-100',
+    secondary: 'border border-white/10 bg-white/[0.04] text-white backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-blue-400/50 hover:bg-gray-800/80 hover:shadow-[0_0_0_1px_rgba(59,130,246,0.15),0_12px_30px_rgba(59,130,246,0.12)] focus:ring-gray-500',
+    ghost: 'border border-transparent text-gray-300 hover:text-white hover:bg-white/[0.03] hover:border-white/10 focus:ring-gray-500'
   };
   
   const sizes = {
@@ -50,7 +50,7 @@ export default function Button({
   );
 
   const motionProps = {
-    whileHover: { scale: 1.02 },
+    whileHover: { scale: 1.03, y: -2 },
     whileTap: { scale: 0.98 },
     transition: { duration: 0.2 }
   };
