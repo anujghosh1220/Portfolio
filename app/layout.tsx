@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Anuj Ghosh | Software Development Engineer & Full-Stack Developer",
   description: "Portfolio of Anuj Ghosh, a Software Development Engineer and Full-Stack Developer specializing in Python, JavaScript, React.js, Node.js, backend development and secure web applications.",
+  icons: {
+    icon: "/images/profile.webp",
+    shortcut: "/images/profile.webp",
+    apple: "/images/profile.webp",
+  },
   keywords: ["Software Development Engineer", "Full-Stack Developer", "Python", "React.js", "Node.js", "Web Development", "Cybersecurity"],
   authors: [{ name: "Anuj Ghosh" }],
   openGraph: {
