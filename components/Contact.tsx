@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaLinkedin, FaGithub, FaPaperPlane, FaArrowRight } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaPaperPlane, FaArrowRight } from 'react-icons/fa';
 import Card from './Card';
 import SectionHeading from './SectionHeading';
 import Button from './Button';

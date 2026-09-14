@@ -1,38 +1,5 @@
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import BackgroundEffects from '@/components/BackgroundEffects';
-import About from '@/components/About';
-import Experience from '@/components/Experience';
-import Projects from '@/components/Projects';
-import Skills from '@/components/Skills';
-import Cybersecurity from '@/components/Cybersecurity';
-import Education from '@/components/Education';
-import Certifications from '@/components/Certifications';
-import GitHubSection from '@/components/GitHubSection';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
-import { ScrollProgress, BackToTop } from '@/components/animations';
+import PrecisionPortfolio from '@/components/PrecisionPortfolio';
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
-      <ScrollProgress />
-      <BackgroundEffects />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Cybersecurity />
-        <Education />
-        <Certifications />
-        <GitHubSection />
-        <Contact />
-      </main>
-      <Footer />
-      <BackToTop />
-    </div>
-  );
+  return <PrecisionPortfolio />;
 }

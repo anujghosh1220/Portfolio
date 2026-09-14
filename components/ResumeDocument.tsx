@@ -1,5 +1,3 @@
-'use client';
-
 import { personalInfo } from '@/lib/data/personal';
 import { experiences } from '@/lib/data/experience';
 import { skillCategories } from '@/lib/data/skills';
@@ -7,344 +5,88 @@ import { education } from '@/lib/data/education';
 import { certifications } from '@/lib/data/certifications';
 import { projects } from '@/lib/data/projects';
 
+const skillLabels: Record<string, string> = {
+  Programming: 'Languages',
+  Frontend: 'Frontend',
+  Backend: 'Backend',
+  Databases: 'Databases',
+  Tools: 'Tools & platforms',
+  Cybersecurity: 'Security',
+  'Development Concepts': 'Engineering practice',
+};
+
 export default function ResumeDocument() {
   return (
-    <div className="resume-document bg-white text-gray-900" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-      {/* Header */}
+    <article className="resume-document" aria-label="Anuj Ghosh resume">
       <header className="resume-header">
-        <h1 className="resume-name">{personalInfo.name.toUpperCase()}</h1>
-        <p className="resume-title">Software Development Engineer | Full-Stack Developer</p>
+        <div>
+          <p className="resume-kicker">Software / Engineering profile</p>
+          <h1>{personalInfo.name.toUpperCase()}</h1>
+          <p className="resume-title">Software Development Engineer · Full-Stack Developer</p>
+        </div>
         <div className="resume-contact">
-          <p>{personalInfo.location}</p>
-          <p>Phone: +91 76798 85140</p>
-          <p>Email: {personalInfo.email}</p>
-          <p>GitHub: github.com/anujghosh1220</p>
-          <p>LinkedIn: linkedin.com/in/anuj-ghosh-416964239</p>
+          <span>{personalInfo.location}</span>
+          <span>+91 76798 85140</span>
+          <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
+          <a href={personalInfo.github}>github.com/anujghosh1220</a>
+          <a href={personalInfo.linkedin}>linkedin.com/in/anuj-ghosh-416964239</a>
         </div>
         <div className="resume-accent-line" />
       </header>
 
-      {/* Professional Summary */}
-      <section className="resume-section">
-        <h2 className="resume-section-title">
-          <span className="resume-section-number">01</span>
-          Professional Summary
-        </h2>
-        <div className="resume-section-divider" />
-        <p className="resume-summary">
-          Software Development Engineer and Full-Stack Developer with hands-on experience building web applications across frontend, backend, and database layers. Experienced with Python, Flask, React.js, Node.js, PHP, SQL, MongoDB and modern web technologies. Built business-oriented applications, real-time systems and management platforms, with additional foundation in cybersecurity and secure software development. Experienced in authentication, session management, role-based access control, input validation, CRUD operations, database integration, debugging and application development.
-        </p>
-      </section>
+      <ResumeSection number="01" title="Professional summary">
+        <p className="resume-summary">Software Development Engineer and Full-Stack Developer with hands-on experience building web applications across frontend, backend, and database layers. Experienced with Python, Flask, React.js, Node.js, PHP, SQL, MongoDB and modern web technologies. Builds business-oriented applications and real-time systems with a strong foundation in secure software development, authentication, input validation, access control, database integration, debugging and application reliability.</p>
+      </ResumeSection>
 
-      {/* Technical Skills */}
-      <section className="resume-section">
-        <h2 className="resume-section-title">
-          <span className="resume-section-number">02</span>
-          Technical Skills
-        </h2>
-        <div className="resume-section-divider" />
-        <div className="resume-skills">
-          {skillCategories.map((category, index) => (
-            <div key={index} className="resume-skill-category">
-              <p className="resume-skill-category-title">{category.category}:</p>
-              <p className="resume-skill-text">{category.skills.join(', ')}</p>
-            </div>
+      <ResumeSection number="02" title="Professional experience">
+        <div className="resume-experience-list">
+          {experiences.map((experience) => (
+            <section className="resume-experience" key={experience.id}>
+              <div className="resume-experience-meta"><span>{experience.period}</span><span>{experience.location || 'India'}</span></div>
+              <div className="resume-experience-body">
+                <h3>{experience.title}</h3>
+                <p className="resume-company">{experience.company}</p>
+                <ul>{experience.responsibilities.map((responsibility) => <li key={responsibility}>{responsibility}</li>)}</ul>
+                {experience.technologies && <p className="resume-inline-meta"><strong>Technologies:</strong> {experience.technologies.join(', ')}</p>}
+              </div>
+            </section>
           ))}
         </div>
-      </section>
+      </ResumeSection>
 
-      {/* Professional Experience */}
-      <section className="resume-section">
-        <h2 className="resume-section-title">
-          <span className="resume-section-number">03</span>
-          Professional Experience
-        </h2>
-        <div className="resume-section-divider" />
-        {experiences.map((exp, index) => (
-          <div key={index} className="resume-experience-item">
-            <h3 className="resume-job-title">{exp.title}</h3>
-            <p className="resume-company">{exp.company}</p>
-            <p className="resume-period">
-              {exp.period} {exp.location ? `| ${exp.location}` : ''}
-            </p>
-            <ul className="resume-responsibilities">
-              {exp.responsibilities.map((resp, respIndex) => (
-                <li key={respIndex}>{resp}</li>
-              ))}
-            </ul>
-            {exp.technologies && (
-              <p className="resume-project-tech">
-                Technologies: {exp.technologies.join(', ')}
-              </p>
-            )}
-          </div>
-        ))}
-      </section>
-
-      {/* Projects */}
-      <section className="resume-section">
-        <h2 className="resume-section-title">
-          <span className="resume-section-number">04</span>
-          Projects
-        </h2>
-        <div className="resume-section-divider" />
-        {projects.map((project, index) => (
-          <div key={index} className="resume-project-item">
-            <h3 className="resume-project-title">{project.title}</h3>
-            {project.longDescription && (
-              <p className="resume-project-desc">{project.longDescription}</p>
-            )}
-            <p className="resume-project-tech">
-              Technologies: {project.technologies.join(', ')}
-            </p>
-            <ul className="resume-responsibilities">
-              {project.features.slice(0, 4).map((feature, featIndex) => (
-                <li key={featIndex}>{feature}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </section>
-
-      {/* Education */}
-      <section className="resume-section">
-        <h2 className="resume-section-title">
-          <span className="resume-section-number">05</span>
-          Education
-        </h2>
-        <div className="resume-section-divider" />
-        {education.map((edu, index) => (
-          <div key={index} className="resume-education-item">
-            <h3 className="resume-degree">{edu.degree}</h3>
-            <p className="resume-institution">{edu.institution}</p>
-            <p className="resume-education-period">{edu.period}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* Certifications */}
-      <section className="resume-section">
-        <h2 className="resume-section-title">
-          <span className="resume-section-number">06</span>
-          Certifications
-        </h2>
-        <div className="resume-section-divider" />
-        <ul className="resume-certifications">
-          {certifications.map((cert, index) => (
-            <li key={index}>
-              {cert.title} — {cert.issuer}
-              {cert.skills && ` (${cert.skills.join(', ')})`}
-            </li>
+      <ResumeSection number="03" title="Selected projects">
+        <div className="resume-project-grid">
+          {projects.map((project) => (
+            <section className="resume-project" key={project.id}>
+              <h3>{project.title}</h3>
+              <p>{project.longDescription || project.description}</p>
+              <p className="resume-inline-meta"><strong>Stack:</strong> {project.technologies.join(', ')}</p>
+              <ul>{project.features.slice(0, 4).map((feature) => <li key={feature}>{feature}</li>)}</ul>
+              {project.github && <a className="resume-project-link" href={project.github}>Source: github.com/anujghosh1220</a>}
+            </section>
           ))}
-        </ul>
-      </section>
+        </div>
+      </ResumeSection>
 
-      <style jsx>{`
-        .resume-document {
-          padding: 48px;
-          font-size: 10pt;
-          line-height: 1.4;
-          color: #1a1a1a;
-        }
+      <div className="resume-two-column">
+        <ResumeSection number="04" title="Technical skills">
+          <div className="resume-skills-list">
+            {skillCategories.map((category) => <div className="resume-skill-row" key={category.category}><strong>{skillLabels[category.category] || category.category}</strong><span>{category.skills.join(', ')}</span></div>)}
+          </div>
+        </ResumeSection>
 
-        .resume-header {
-          margin-bottom: 24px;
-        }
-
-        .resume-name {
-          font-size: 28pt;
-          font-weight: 700;
-          color: #0a0a0a;
-          margin-bottom: 8px;
-          letter-spacing: -0.5px;
-        }
-
-        .resume-title {
-          font-size: 13pt;
-          font-weight: 600;
-          color: #4a5568;
-          margin-bottom: 16px;
-          letter-spacing: 0.2px;
-        }
-
-        .resume-contact {
-          font-size: 9pt;
-          color: #4a5568;
-          line-height: 1.6;
-        }
-
-        .resume-contact p {
-          margin-bottom: 2px;
-        }
-
-        .resume-accent-line {
-          height: 2px;
-          background-color: #3b82f6;
-          width: 60px;
-          margin-top: 16px;
-          margin-bottom: 24px;
-        }
-
-        .resume-section {
-          margin-bottom: 20px;
-        }
-
-        .resume-section-title {
-          font-size: 12pt;
-          font-weight: 700;
-          color: #0a0a0a;
-          margin-bottom: 12px;
-          letter-spacing: 0.5px;
-          text-transform: uppercase;
-          display: flex;
-          align-items: center;
-        }
-
-        .resume-section-number {
-          font-size: 10pt;
-          font-weight: 700;
-          color: #3b82f6;
-          margin-right: 8px;
-        }
-
-        .resume-section-divider {
-          height: 1px;
-          background-color: #e5e7eb;
-          margin-bottom: 16px;
-        }
-
-        .resume-summary {
-          font-size: 10pt;
-          color: #374151;
-          line-height: 1.6;
-          text-align: justify;
-          margin-bottom: 0;
-        }
-
-        .resume-skills {
-          margin-bottom: 0;
-        }
-
-        .resume-skill-category {
-          margin-bottom: 8px;
-        }
-
-        .resume-skill-category-title {
-          font-size: 9pt;
-          font-weight: 600;
-          color: #1f2937;
-          margin-bottom: 4px;
-        }
-
-        .resume-skill-text {
-          font-size: 9pt;
-          color: #4b5563;
-          line-height: 1.5;
-          margin-bottom: 0;
-        }
-
-        .resume-experience-item {
-          margin-bottom: 16px;
-        }
-
-        .resume-job-title {
-          font-size: 11pt;
-          font-weight: 700;
-          color: #0a0a0a;
-          margin-bottom: 2px;
-        }
-
-        .resume-company {
-          font-size: 10pt;
-          font-weight: 600;
-          color: #3b82f6;
-          margin-bottom: 2px;
-        }
-
-        .resume-period {
-          font-size: 9pt;
-          color: #6b7280;
-          margin-bottom: 6px;
-        }
-
-        .resume-responsibilities {
-          font-size: 9pt;
-          color: #374151;
-          line-height: 1.6;
-          margin: 0;
-          padding-left: 20px;
-        }
-
-        .resume-responsibilities li {
-          margin-bottom: 3px;
-          text-align: justify;
-        }
-
-        .resume-project-item {
-          margin-bottom: 12px;
-        }
-
-        .resume-project-title {
-          font-size: 10pt;
-          font-weight: 700;
-          color: #0a0a0a;
-          margin-bottom: 2px;
-        }
-
-        .resume-project-desc {
-          font-size: 8pt;
-          color: #6b7280;
-          margin-bottom: 4px;
-        }
-
-        .resume-project-tech {
-          font-size: 8pt;
-          color: #6b7280;
-          margin-bottom: 4px;
-        }
-
-        .resume-education-item {
-          margin-bottom: 10px;
-        }
-
-        .resume-degree {
-          font-size: 10pt;
-          font-weight: 700;
-          color: #0a0a0a;
-          margin-bottom: 2px;
-        }
-
-        .resume-institution {
-          font-size: 10pt;
-          font-weight: 600;
-          color: #3b82f6;
-          margin-bottom: 2px;
-        }
-
-        .resume-education-period {
-          font-size: 9pt;
-          color: #6b7280;
-          margin-bottom: 0;
-        }
-
-        .resume-certifications {
-          font-size: 9pt;
-          color: #374151;
-          line-height: 1.5;
-          margin: 0;
-          padding-left: 20px;
-        }
-
-        .resume-certifications li {
-          margin-bottom: 4px;
-        }
-
-        @media print {
-          .resume-document {
-            padding: 48px;
-          }
-        }
-      `}</style>
-    </div>
+        <ResumeSection number="05" title="Education">
+          <div className="resume-education-list">
+            {education.map((item) => <div className="resume-education" key={item.id}><span>{item.period}</span><h3>{item.degree}</h3><p>{item.institution}</p></div>)}
+          </div>
+          <h2 className="resume-subsection-title">Certifications</h2>
+          <ul className="resume-certifications">{certifications.map((certification) => <li key={certification.id}><strong>{certification.title}</strong><span>{certification.issuer}{certification.skills ? ` · ${certification.skills.join(', ')}` : ''}</span></li>)}</ul>
+        </ResumeSection>
+      </div>
+    </article>
   );
+}
+
+function ResumeSection({ number, title, children }: { number: string; title: string; children: React.ReactNode }) {
+  return <section className="resume-section"><div className="resume-section-heading"><span>{number}</span><h2>{title}</h2></div>{children}</section>;
 }

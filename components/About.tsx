@@ -7,11 +7,8 @@ import Card from './Card';
 import SectionHeading from './SectionHeading';
 import { personalInfo } from '@/lib/data/personal';
 import { StaggerContainer, StaggerItem, FadeIn } from './animations';
-import { useReducedMotion } from './animations';
 
 export default function About() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <section id="about" className="py-20 relative scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,12 +24,12 @@ export default function About() {
                 <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#070b12] via-[#101827] to-[#1f2c3d]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(96,165,250,0.16),_transparent_45%)]" />
                   <Image
-                    src="/images/profile-transparent.webp"
+                    src="/images/Anuj_Ghosh.webp"
                     alt="Professional portrait of the portfolio owner"
                     width={800}
                     height={1200}
                     priority
-                    className="relative z-10 mx-auto h-[440px] w-auto object-contain sm:h-[520px] lg:h-[560px]"
+                    className="relative z-10 mx-auto h-[440px] w-auto object-cover sm:h-[520px] lg:h-[560px]"
                   />
                 </div>
               </Card>
@@ -46,12 +43,12 @@ export default function About() {
               </StaggerItem>
               <StaggerItem direction="up">
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  I've built business-oriented applications, real-time systems and management platforms, while also developing a strong foundation in cybersecurity and secure software development.
+                  I&apos;ve built business-oriented applications, real-time systems and management platforms, while also developing a strong foundation in cybersecurity and secure software development.
                 </p>
               </StaggerItem>
               <StaggerItem direction="up">
                 <p className="text-gray-400 text-base leading-relaxed">
-                  I approach every project with a focus on clean code, security best practices, and scalable architecture. Whether it's building a complete management system or implementing secure authentication flows, I'm committed to delivering robust, user-focused solutions.
+                  I approach every project with a focus on clean code, security best practices, and scalable architecture. Whether it&apos;s building a complete management system or implementing secure authentication flows, I&apos;m committed to delivering robust, user-focused solutions.
                 </p>
               </StaggerItem>
             </StaggerContainer>

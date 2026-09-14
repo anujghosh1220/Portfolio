@@ -1,101 +1,42 @@
 'use client';
 
+import Link from 'next/link';
+import { MotionConfig, motion } from 'framer-motion';
+import { FaArrowLeft, FaArrowUpRightFromSquare, FaDownload, FaPrint } from 'react-icons/fa6';
 import ResumeDocument from '@/components/ResumeDocument';
 
 export default function ResumePage() {
+  const printResume = () => window.print();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-slate-900 to-gray-950 py-8 px-4">
-      {/* Control Bar - Hidden in Print */}
-      <div className="max-w-5xl mx-auto mb-6 flex justify-between items-center no-print">
-        <a
-          href="/"
-          className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors group"
-        >
-          <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          Back to Portfolio
-        </a>
-        <button
-          onClick={() => window.print()}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 text-white rounded-lg transition-all border border-gray-700/50 backdrop-blur-sm"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-          </svg>
-          Print
-        </button>
-      </div>
-
-      {/* Resume Container */}
-      <div className="max-w-5xl mx-auto flex justify-center">
-        <div className="bg-white text-gray-900 shadow-2xl shadow-blue-900/10 rounded-sm overflow-hidden" style={{ width: '210mm', minHeight: '297mm' }}>
-          <ResumeDocument />
+    <MotionConfig reducedMotion="user">
+    <main className="resume-page">
+      <div className="resume-atmosphere" aria-hidden="true" />
+      <motion.header className="resume-actions no-print resume-motion" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: 'easeOut' }}>
+        <Link href="/" className="resume-back"><FaArrowLeft size={12} /> Back to portfolio</Link>
+        <div className="resume-action-group">
+          <motion.button type="button" onClick={printResume} whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}><FaDownload size={12} /> Download PDF</motion.button>
+          <motion.button type="button" onClick={printResume} whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}><FaPrint size={12} /> Print resume</motion.button>
         </div>
-      </div>
+      </motion.header>
 
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+      <motion.section className="resume-intro no-print resume-motion" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.08, ease: 'easeOut' }}>
+        <div>
+          <p className="resume-page-eyebrow"><span /> Professional document / 2026</p>
+          <h1>Resume</h1>
+        </div>
+        <p>Software engineered with precision.<br />A clear record of experience, craft, and technical practice.</p>
+      </motion.section>
 
-        @page {
-          size: A4;
-          margin: 0;
-        }
+      <motion.div className="resume-sheet-wrap resume-motion" initial={{ opacity: 0, y: 24, scale: 0.99 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.75, delay: 0.16, ease: 'easeOut' }}>
+        <ResumeDocument />
+      </motion.div>
 
-        @media print {
-          body {
-            background: white !important;
-          }
-          
-          .no-print {
-            display: none !important;
-          }
-
-          .min-h-screen {
-            padding: 0 !important;
-            background: white !important;
-          }
-
-          .max-w-5xl {
-            max-width: none !important;
-            margin: 0 !important;
-          }
-
-          .shadow-2xl,
-          .shadow-blue-900\/10 {
-            box-shadow: none !important;
-          }
-
-          .rounded-sm {
-            border-radius: 0 !important;
-          }
-
-          .overflow-hidden {
-            overflow: visible !important;
-          }
-
-          .resume-document {
-            padding: 48px !important;
-          }
-        }
-
-        @media screen and (max-width: 768px) {
-          .max-w-5xl {
-            padding: 0 8px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-          }
-
-          .bg-white {
-            margin: 0 auto;
-          }
-
-          .resume-document {
-            padding: 32px !important;
-          }
-        }
-      `}</style>
-    </div>
+      <footer className="resume-page-footer no-print">
+        <span>ANUJ GHOSH / SOFTWARE ENGINEER</span>
+        <Link href="/"><FaArrowUpRightFromSquare size={11} /> Return to portfolio</Link>
+      </footer>
+    </main>
+    </MotionConfig>
   );
 }

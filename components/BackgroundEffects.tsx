@@ -4,13 +4,18 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from './animations/useReducedMotion';
 
+const particlePositions = [
+  [8, 12, 72, 18], [17, 68, 44, 24], [26, 31, 82, 21], [34, 84, 58, 27],
+  [43, 19, 69, 31], [51, 57, 35, 22], [59, 8, 76, 29], [67, 74, 29, 25],
+  [74, 38, 64, 19], [82, 91, 48, 33], [89, 23, 78, 26], [94, 63, 37, 20],
+  [12, 46, 88, 30], [38, 6, 52, 23], [63, 49, 91, 28],
+] as const;
+
 export default function BackgroundEffects() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isMounted, setIsMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    setIsMounted(true);
     if (prefersReducedMotion) return;
     
     const handleMouseMove = (e: MouseEvent) => {
@@ -20,23 +25,6 @@ export default function BackgroundEffects() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [prefersReducedMotion]);
-
-  if (!isMounted) {
-    return (
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-black" />
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }} />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <>
@@ -73,20 +61,20 @@ export default function BackgroundEffects() {
               transition={{ type: 'spring', damping: 40, stiffness: 150 }}
             />
 
-            {Array.from({ length: 15 }).map((_, i) => (
+            {particlePositions.map(([x, y, targetY, duration], i) => (
               <motion.div
                 key={i}
                 className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
                 initial={{
-                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1920),
-                  y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1080),
+                  left: `${x}%`,
+                  top: `${y}%`,
                 }}
                 animate={{
-                  y: [null, Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1080)],
+                  top: [`${y}%`, `${targetY}%`],
                   opacity: [0.1, 0.3, 0.1],
                 }}
                 transition={{
-                  duration: 15 + Math.random() * 25,
+                  duration,
                   repeat: Infinity,
                   ease: 'linear',
                 }}

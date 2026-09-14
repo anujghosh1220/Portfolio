@@ -6,7 +6,6 @@ import {
   Text,
   View,
   Font,
-  Link,
   StyleSheet,
 } from '@react-pdf/renderer';
 import { personalInfo } from '@/lib/data/personal';

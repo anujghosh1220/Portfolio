@@ -25,7 +25,7 @@ export default function Projects() {
         />
 
         <StaggerContainer staggerDelay={0.1} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((proj, index) => (
+          {projects.map((proj) => (
             <StaggerItem key={proj.id} direction="up">
               <HoverCard
                 enableTilt={!prefersReducedMotion}
