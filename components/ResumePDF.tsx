@@ -5,7 +5,6 @@ import {
   Page,
   Text,
   View,
-  Font,
   StyleSheet,
 } from '@react-pdf/renderer';
 import { personalInfo } from '@/lib/data/personal';
@@ -15,14 +14,9 @@ import { education } from '@/lib/data/education';
 import { certifications } from '@/lib/data/certifications';
 import { projects } from '@/lib/data/projects';
 
-Font.register({
-  family: 'Inter',
-  src: 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff',
-});
-
 const styles = StyleSheet.create({
   page: {
-    fontFamily: 'Inter',
+    fontFamily: 'Helvetica',
     backgroundColor: '#FFFFFF',
     padding: 48,
     fontSize: 10,
@@ -205,7 +199,7 @@ const ResumePDFDocument = () => (
         </Text>
         <View style={styles.sectionDivider} />
         <Text style={styles.summary}>
-          Software Development Engineer and Full-Stack Developer with hands-on experience building web applications across frontend, backend, and database layers. Experienced with Python, Flask, React.js, Node.js, PHP, SQL, MongoDB and modern web technologies. Built business-oriented applications, real-time systems and management platforms, with additional foundation in cybersecurity and secure software development. Experienced in authentication, session management, role-based access control, input validation, CRUD operations, database integration, debugging and application development.
+          Software Development Engineer and Full-Stack Developer with hands-on experience building web applications across frontend, backend, and database layers. Experienced with Python, JavaScript, Flask, React.js, Node.js, PHP, SQL, MongoDB and modern web technologies. Builds business-oriented applications and real-time systems with a strong foundation in secure software development, authentication, input validation, access control, database integration, debugging and application reliability.
         </Text>
       </View>
 
@@ -246,7 +240,7 @@ const ResumePDFDocument = () => (
             </Text>
             {exp.responsibilities.map((resp, respIndex) => (
               <Text key={respIndex} style={styles.responsibility}>
-                • {resp}
+                - {resp}
               </Text>
             ))}
             {exp.technologies && (
@@ -279,9 +273,14 @@ const ResumePDFDocument = () => (
             </Text>
             {project.features.slice(0, 4).map((feature, featIndex) => (
               <Text key={featIndex} style={styles.responsibility}>
-                • {feature}
+                - {feature}
               </Text>
             ))}
+            {project.github && (
+              <Text style={styles.projectTech}>
+                Source: github.com/anujghosh1220
+              </Text>
+            )}
           </View>
         ))}
       </View>
@@ -313,7 +312,7 @@ const ResumePDFDocument = () => (
         
         {certifications.map((cert, index) => (
           <Text key={index} style={styles.certificationItem}>
-            • {cert.title} — {cert.issuer}
+            - {cert.title} - {cert.issuer}
             {cert.skills && ` (${cert.skills.join(', ')})`}
           </Text>
         ))}

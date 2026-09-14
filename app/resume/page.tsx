@@ -15,7 +15,7 @@ export default function ResumePage() {
       <motion.header className="resume-actions no-print resume-motion" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: 'easeOut' }}>
         <Link href="/" className="resume-back"><FaArrowLeft size={12} /> Back to portfolio</Link>
         <div className="resume-action-group">
-          <motion.button type="button" onClick={printResume} whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}><FaDownload size={12} /> Download PDF</motion.button>
+          <motion.button type="button" onClick={printResume} whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}><FaDownload size={12} /> Save as PDF</motion.button>
           <motion.button type="button" onClick={printResume} whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}><FaPrint size={12} /> Print resume</motion.button>
         </div>
       </motion.header>
