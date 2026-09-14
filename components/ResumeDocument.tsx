@@ -25,11 +25,30 @@ export default function ResumeDocument() {
           <p className="resume-title">Software Development Engineer · Full-Stack Developer</p>
         </div>
         <div className="resume-contact">
-          <span>{personalInfo.location}</span>
-          <span>+91 76798 85140</span>
-          <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
-          <a href={personalInfo.github}>github.com/anujghosh1220</a>
-          <a href={personalInfo.linkedin}>linkedin.com/in/anuj-ghosh-416964239</a>
+          <div className="resume-contact-item">
+            <span className="resume-contact-label">Location</span>
+            <span>{personalInfo.location}</span>
+          </div>
+          <div className="resume-contact-item">
+            <span className="resume-contact-label">Phone</span>
+            <span>+91 76798 85140</span>
+          </div>
+          <div className="resume-contact-item">
+            <span className="resume-contact-label">Email</span>
+            <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
+          </div>
+          <div className="resume-contact-item">
+            <span className="resume-contact-label">GitHub</span>
+            <a href={personalInfo.github}>github.com/anujghosh1220</a>
+          </div>
+          <div className="resume-contact-item">
+            <span className="resume-contact-label">LinkedIn</span>
+            <a href={personalInfo.linkedin}>linkedin.com/in/anuj-ghosh-416964239</a>
+          </div>
+          <div className="resume-contact-item">
+            <span className="resume-contact-label">Portfolio</span>
+            <a href={personalInfo.portfolio}>anuj-ghosh-portfolio.vercel.app</a>
+          </div>
         </div>
         <div className="resume-accent-line" />
       </header>

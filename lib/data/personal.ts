@@ -8,6 +8,7 @@ export interface PersonalInfo {
   email: string;
   github: string;
   linkedin: string;
+  portfolio: string;
   focus: string;
   currentRole: string;
   primaryLanguages: string;
@@ -30,6 +31,7 @@ export const personalInfo: PersonalInfo = {
   email: "anujghosh588@gmail.com",
   github: "https://github.com/anujghosh1220",
   linkedin: "https://www.linkedin.com/in/anuj-ghosh-416964239",
+  portfolio: "https://anuj-ghosh-portfolio.vercel.app/",
   focus: "Full-Stack Development",
   currentRole: "Software Development Engineer I",
   primaryLanguages: "Python / JavaScript",
